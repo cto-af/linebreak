@@ -18,6 +18,7 @@ module.exports = {
         "no-eq-null": "off",
         "eqeqeq": ["error", "always", { "null": "ignore" }],
         "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+        "quotes": ["error", "single", { avoidEscape: true }],
       },
     },
     {

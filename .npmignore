@@ -7,3 +7,4 @@ test/
 .github/
 tsconfig.json
 examples/
+tools/
