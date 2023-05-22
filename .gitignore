@@ -1,0 +1,4 @@
+node_modules/
+coverage/
+examples/lineBreak.js
+examples/LineBreak.txt

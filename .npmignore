@@ -1,0 +1,9 @@
+.mocharc.cjs
+.c8rc
+coverage/
+test/
+.editorconfig
+.eslintrc.cjs
+.github/
+tsconfig.json
+examples/
