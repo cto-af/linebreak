@@ -1,4 +1,5 @@
 import { UnicodeTrieBuilder } from '@cto.af/unicode-trie/builder.js';
+import assert from 'assert/strict';
 import { fileURLToPath } from 'url';
 import fs from 'fs/promises';
 import path from 'path';
@@ -57,19 +58,16 @@ const values = [
 ];
 
 const trie = new UnicodeTrieBuilder('XX', 'ER', values);
-// Set defaults
-trie.setRange(0x20000, 0x2FFFD, 'ID');
-trie.setRange(0x30000, 0x3FFFD, 'ID');
-trie.setRange(0x1F000, 0x1FAFF, 'ID');
-trie.setRange(0x1FC00, 0x1FFFD, 'ID');
-trie.setRange(0x20A0, 0x20CF, 'PR');
 
-const matches = txt.matchAll(/^([0-9A-F]{4})(?:\.\.([0-9A-F]{4}))?;(\S+)/gm);
+const matches
+  = txt.matchAll(/^(\p{Hex}{4,6})(?:\.\.(\p{Hex}{4,6}))?;(\S+)/gmu);
 for (const match of matches) {
+  const start = parseInt(match[1], 16);
   if (match[2]) {
-    trie.setRange(parseInt(match[1], 16), parseInt(match[2], 16), match[3]);
+    const end = parseInt(match[2], 16);
+    trie.setRange(start, end, match[3]);
   } else {
-    trie.set(parseInt(match[1], 16), match[3]);
+    trie.set(start, match[3]);
   }
 }
 
@@ -87,6 +85,18 @@ export const LineBreak = new UnicodeTrie(Buffer.from(
 export const Classes = Object.fromEntries(
   LineBreak.values.map((v, i) => [v, i])
 );
-LineBreak.values = [];
+export const Values = LineBreak.values;
 `);
 
+// Spot checks
+const { LineBreak } = await import(OUTPUT);
+const checks = {
+  '0': 'CM',
+  '1F1EA': 'RI',
+  '1F532': 'AL',
+  'E0100': 'CM',
+};
+
+for (const [hex, cls] of Object.entries(checks)) {
+  assert.equal(LineBreak.getString(parseInt(hex, 16)), cls);
+}

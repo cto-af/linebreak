@@ -9,7 +9,8 @@
     "test": "c8 mocha",
     "lint": "eslint . --ext js",
     "types": "tsc",
-    "build": "npm run lint && npm run types && npm run test"
+    "trie": "node tools/generate_data.js",
+    "build": "npm run trie && npm run lint && npm run types && npm run test"
   },
   "keywords": [
     "unicode",
@@ -33,6 +34,6 @@
     "node": ">=16"
   },
   "dependencies": {
-    "@cto.af/unicode-trie": "1.0.0"
+    "@cto.af/unicode-trie": "1.1.0"
   }
 }

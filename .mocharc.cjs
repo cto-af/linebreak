@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = {
-  reporter: 'spec',
+  reporter: 'progress',
   timeout: '30000'
 }
 
