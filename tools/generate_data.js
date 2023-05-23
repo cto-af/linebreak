@@ -18,7 +18,45 @@ try {
   fs.writeFile(INPUT, txt, 'utf8');
 }
 
-const trie = new UnicodeTrieBuilder('XX', 'ER');
+// These need to be pre-allocated so that the pairs table works.
+// The rest of the values don't matter.
+const values = [
+  'OP',
+  'CL',
+  'CP',
+  'QU',
+  'GL',
+  'NS',
+  'EX',
+  'SY',
+  'IS',
+  'PR',
+  'PO',
+  'NU',
+  'AL',
+  'HL',
+  'ID',
+  'IN',
+  'HY',
+  'BA',
+  'BB',
+  'B2',
+  'ZW',
+  'CM',
+  'WJ',
+  'H2',
+  'H3',
+  'JL',
+  'JV',
+  'JT',
+  'RI',
+  'EB',
+  'EM',
+  'ZWJ',
+  'CB',
+];
+
+const trie = new UnicodeTrieBuilder('XX', 'ER', values);
 // Set defaults
 trie.setRange(0x20000, 0x2FFFD, 'ID');
 trie.setRange(0x30000, 0x3FFFD, 'ID');
@@ -43,8 +81,12 @@ export const LineBreak = new UnicodeTrie(Buffer.from(
   '${buf.toString('base64')}',
   'base64'
 ));
+/**
+ * @type {Record<string, number>}
+ */
 export const Classes = Object.fromEntries(
   LineBreak.values.map((v, i) => [v, i])
 );
+LineBreak.values = [];
 `);
 
