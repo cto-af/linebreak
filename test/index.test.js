@@ -3,7 +3,7 @@ import { LineBreaker } from '../lib/index.js';
 import assert from 'assert';
 import fs from 'fs';
 
-describe('unicode line break tests', () => {
+describe('unicode line break tests', function() {
   // These tests are weird, possibly incorrect or just tailored differently. we skip them.
   const skip = [
     125, 127, 815, 1161, 1163, 1165, 1167, 1331, 2189, 2191, 2873, 2875, 3567, 3739, 4081, 4083,
@@ -39,8 +39,14 @@ describe('unicode line break tests', () => {
     });
 
     if (skip.includes(rowNumber)) {
-      it.skip(cols, () => {
-        // Empty
+      it(cols, function() {
+        // If we happen to fix something, let us know.
+        assert.notDeepStrictEqual(
+          breaks,
+          expected,
+          `${rowNumber} ${JSON.stringify(breaks)} != ${JSON.stringify(expected)} # ${comment}`
+        );
+        this.skip();
       });
       return;
     }
@@ -52,5 +58,18 @@ describe('unicode line break tests', () => {
         `${rowNumber} ${JSON.stringify(breaks)} != ${JSON.stringify(expected)} # ${comment}`
       );
     });
+  });
+});
+
+describe('options', () => {
+  it('generates strings', () => {
+    const breaker = new LineBreaker({
+      string: true,
+    });
+    const res = [...breaker.breaks('foo bar')].map(b => b.string);
+    assert.deepStrictEqual(
+      res,
+      ['foo ', 'bar']
+    );
   });
 });
