@@ -63,7 +63,6 @@ export class Rules {
     constructor(opts?: {});
     opts: {
         string: boolean;
-        verbose: boolean;
         example7: boolean;
     };
     /**
