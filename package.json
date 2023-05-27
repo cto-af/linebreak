@@ -1,11 +1,12 @@
 {
   "name": "@cto.af/linebreak",
   "version": "0.0.0",
-  "description": "Unicode line-breaking algorithm from TR14",
+  "description": "Unicode line-breaking algorithm from UAX #14",
   "main": "lib/index.js",
   "type": "module",
   "types": "types/index.d.ts",
   "scripts": {
+    "docs": "typedoc",
     "test": "c8 mocha",
     "lint": "eslint . --ext js,cjs",
     "types": "tsc",
@@ -16,6 +17,7 @@
     "unicode",
     "linebreak",
     "tr14",
+    "uax14",
     "trie",
     "rules",
     "tailorable"
@@ -29,6 +31,7 @@
     "c8": "7.13.0",
     "eslint": "8.41.0",
     "mocha": "10.2.0",
+    "typedoc": "0.24.7",
     "typescript": "5.0.4"
   },
   "dependencies": {

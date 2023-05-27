@@ -9,3 +9,5 @@ examples/
 test/
 tools/
 tsconfig.json
+docs/
+typedoc.config.cjs

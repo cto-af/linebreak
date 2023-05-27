@@ -186,11 +186,11 @@ describe('rule list manipulation', () => {
 
   it('adds after', () => {
     const r = new Rules();
-    const lb2 = r.rules.findIndex(r => r.name === 'LB2');
-    r.addRuleAfter('LB2');
+    const lb2 = r.rules.findIndex(r => r.name === 'LB02');
+    r.addRuleAfter('LB02');
     assert.equal(r.rules.length, numRules);
     assert.throws(() => r.addRuleAfter('BAD_RULE_NAME'));
-    const i = r.addRuleAfter('LB2', newRule);
+    const i = r.addRuleAfter('LB02', newRule);
     assert.equal(r.rules.length, numRules + 1);
     assert.equal(i, lb2 + 1);
     assert.equal(r.rules[i], newRule);
@@ -198,12 +198,12 @@ describe('rule list manipulation', () => {
 
   it('adds before', () => {
     const r = new Rules();
-    const lb2 = r.rules.findIndex(r => r.name === 'LB2');
-    r.addRuleBefore('LB2');
+    const lb2 = r.rules.findIndex(r => r.name === 'LB02');
+    r.addRuleBefore('LB02');
     assert.equal(r.rules.length, numRules);
     assert.equal(r.rules.length, numRules);
     assert.throws(() => r.addRuleBefore('BAD_RULE_NAME'));
-    const i = r.addRuleBefore('LB2', newRule);
+    const i = r.addRuleBefore('LB02', newRule);
     assert.equal(r.rules.length, numRules + 1);
     assert.equal(i, lb2);
     assert.equal(r.rules[i], newRule);
@@ -211,13 +211,13 @@ describe('rule list manipulation', () => {
 
   it('replaces', () => {
     const r = new Rules();
-    const lb2 = r.rules.findIndex(r => r.name === 'LB2');
-    const lr = r.replaceRule('LB2');
+    const lb2 = r.rules.findIndex(r => r.name === 'LB02');
+    const lr = r.replaceRule('LB02');
     // Put it back
     r.rules.splice(lb2, 0, ...lr);
-    assert.equal(r.rules.findIndex(r => r.name === 'LB2'), lb2);
+    assert.equal(r.rules.findIndex(r => r.name === 'LB02'), lb2);
     assert.throws(() => r.replaceRule('BAD_RULE_NAME'));
-    r.replaceRule('LB2', newRule);
+    r.replaceRule('LB02', newRule);
     assert.equal(r.rules.length, numRules);
     assert.equal(r.rules[lb2], newRule);
   });

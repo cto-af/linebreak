@@ -1,13 +1,13 @@
-export function LB2(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
-export function LB3(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
-export function LB4(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
-export function LB5(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
-export function LB6(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
+export function LB02(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
+export function LB03(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
+export function LB04(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
+export function LB05(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
+export function LB06(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 export function LBspacesStop(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
-export function LB7(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
-export function LB8(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
-export function LB8a(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
-export function LB9(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
+export function LB07(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
+export function LB08(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
+export function LB08a(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
+export function LB09(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 export function LB10(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 export function LB11(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 export function LB12(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
@@ -38,9 +38,22 @@ export function LB30b(state: import('./state.js').BreakerState): typeof PASS | t
 export function LB31(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 export function Example7_13(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 export function Example7_25(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
+/**
+ * This rule has no opinion.
+ */
 export const PASS: unique symbol;
+/**
+ * This rule asserts that there must not be a break after the current
+ * code point.
+ */
 export const NO_BREAK: unique symbol;
+/**
+ * This rule asserts that there may be a break after the current code point.
+ */
 export const MAY_BREAK: unique symbol;
+/**
+ * This rule asserts that there must be a line break after the current code point.
+ */
 export const MUST_BREAK: unique symbol;
 /**
  * @type {BreakRule[]}
@@ -98,5 +111,11 @@ export class Rules {
     breaks(str: string): Generator<Break, void, unknown>;
     #private;
 }
+/**
+ * A rule that impacts linebreaking.  Looking ahead and behind one code point
+ * is fast, using `state.prev` and `state.next` respectively.  Looking ahead
+ * more code points is possible with `*BreakerState.codePoints()`, but be
+ * careful of causing ReDos vulnerabilities.
+ */
 export type BreakRule = (state: import('./state.js').BreakerState) => typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 import { Break } from './break.js';
