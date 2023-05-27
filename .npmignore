@@ -1,10 +1,11 @@
-.mocharc.cjs
 .c8rc
-coverage/
-test/
 .editorconfig
 .eslintrc.cjs
 .github/
-tsconfig.json
+.mocharc.cjs
+.vscode/
+coverage/
 examples/
+test/
 tools/
+tsconfig.json
