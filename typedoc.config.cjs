@@ -5,6 +5,7 @@ module.exports = {
   entryPoints: [
     './lib/index.js',
     './lib/break.js',
+    './lib/state.js',
   ],
   out: 'docs',
   cleanOutputDir: true,

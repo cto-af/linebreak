@@ -37,6 +37,7 @@ describe('Run rules in order', () => {
     // LB8
     assertBreaks('a\u200Bb', [2, 3]);
     assertBreaks('a\u200B bc', [3, 5]);
+    assertBreaks('a\u200B   bc', [5, 7]);
     // LB8a
     assertBreaks('\u200Db', [2]);
     // LB9
