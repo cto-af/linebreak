@@ -1,7 +1,7 @@
 {
   "name": "@cto.af/linebreak",
   "version": "0.0.0",
-  "description": "Quick fork of linebreak for modernity",
+  "description": "Unicode line-breaking algorithm from TR14",
   "main": "lib/index.js",
   "type": "module",
   "types": "types/index.d.ts",
@@ -14,12 +14,13 @@
   },
   "keywords": [
     "unicode",
-    "linebreak"
+    "linebreak",
+    "tr14",
+    "trie",
+    "rules",
+    "tailorable"
   ],
-  "author": "Devon Govett <devongovett@gmail.com>",
-  "contributors": [
-    "Joe Hildebrand <joe-github@cursive.net>"
-  ],
+  "author": "Joe Hildebrand <joe-github@cursive.net>",
   "repository": "cto-af/linebreak",
   "license": "MIT",
   "devDependencies": {
@@ -30,10 +31,10 @@
     "mocha": "10.2.0",
     "typescript": "5.0.4"
   },
-  "engines": {
-    "node": ">=16"
-  },
   "dependencies": {
     "@cto.af/unicode-trie": "1.1.0"
+  },
+  "engines": {
+    "node": ">=16"
   }
 }

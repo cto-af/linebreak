@@ -1,7 +1,7 @@
 export const version: "15.0.0";
 export const inputFileDate: Date;
 export const generatedDate: Date;
-export const LineBreak: UnicodeTrie;
+export const EastAsianWidth: UnicodeTrie;
 /**
  * @type {Record<string, number>}
  */

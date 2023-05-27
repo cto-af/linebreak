@@ -1,16 +1,40 @@
 /* eslint-disable max-len */
-import { LineBreaker } from '../lib/index.js';
+import { Rules } from '../lib/index.js';
 import assert from 'assert';
 import fs from 'fs';
+
+// We have to include the tailoring from Example 7:
+//
+// "For those who do implement the default breaks as specified in this annex,
+// plus the tailoring of numbers described in Example 7 of Section 8.2,
+// Examples of Customization, and wish to check that that their implementation
+// matches that specification, a test file has been made available in
+// [Tests14]."
 
 describe('unicode line break tests', function() {
   // These tests are weird, possibly incorrect or just tailored differently. we skip them.
   const skip = [
-    125, 127, 815, 1161, 1163, 1165, 1167, 1331, 2189, 2191, 2873, 2875, 3567, 3739, 4081, 4083,
-    4425, 4427, 4473, 4475, 4597, 4599, 4645, 4647, 4943, 5109, 5111, 5459, 6149, 6151, 6153, 6155,
-    6489, 6491, 6663, 6833, 6835, 7005, 7007, 7177, 7179, 7477, 7486, 7491, 7576, 7577, 7578, 7579,
-    7580, 7581, 7583, 7584, 7585, 7586, 7587, 7604, 7610, 7611, 7681,
+
   ];
+
+  const verbose = [
+  ];
+
+  const filterRules = {
+    // 7486: ['LB25'], // 005C ÷ 0028 matches PR × OP, LB25
+    // 7491: ['LB25'], // 005C ÷ 007B matches PR × OP, LB25
+    // 7576: ['LB25'], // 002E ÷ 0032 matches IS × NU, LB25
+    // 7577: ['LB25'], // 002E ÷ 0032 matches IS × NU, LB25
+    // 7578: ['LB25'], // 002E ÷ 0032 matches IS × NU, LB25
+    // 7579: ['LB25'], // 002E ÷ 0032 matches IS × NU, LB25
+    // 7580: ['LB25'], // 002E ÷ 0032 matches IS × NU, LB25
+    // 7581: ['LB25'], // 002E ÷ 0032 matches IS × NU, LB25
+    // 7583: ['LB25'], // 002E ÷ 0031 matches IS × NU, LB25
+    // 7584: ['LB25'], // 002E ÷ 0032 matches IS × NU, LB25
+    // 7585: ['LB25'], // 002E ÷ 0033 matches IS × NU, LB25
+    // 7586: ['LB25'], // 002E ÷ 0034 matches IS × NU, LB25
+    // 7587: ['LB25'], // 002e ÷ 0032 matches IS × NU, LB25
+  };
 
   const data = fs.readFileSync(new URL('LineBreakTest.txt', import.meta.url), 'utf8');
   const lines = data.split('\n');
@@ -23,13 +47,17 @@ describe('unicode line break tests', function() {
     const codePoints = cols.split(/\s*[×÷]\s*/).slice(1, -1).map(c => parseInt(c, 16));
     const str = String.fromCodePoint(...codePoints);
 
-    const breaker = new LineBreaker();
-    const breaks = [];
-    let last = 0;
-    for (const bk of breaker.breaks(str)) {
-      breaks.push(str.slice(last, bk.position));
-      last = bk.position;
+    const breaker = new Rules({
+      string: true,
+      example7: true,
+      verbose: verbose.includes(rowNumber),
+    });
+    const filters = filterRules[rowNumber];
+    if (filters) {
+      breaker.removeRule(...filters);
     }
+
+    const breaks = [...breaker.breaks(str)].map(s => s.string);
 
     const expected = cols.split(/\s*÷\s*/).slice(0, -1).map(c => {
       let codes = c.split(/\s*×\s*/);
@@ -63,7 +91,7 @@ describe('unicode line break tests', function() {
 
 describe('options', () => {
   it('generates strings', () => {
-    const breaker = new LineBreaker({
+    const breaker = new Rules({
       string: true,
     });
     const res = [...breaker.breaks('foo bar')].map(b => b.string);
