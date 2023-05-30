@@ -43,6 +43,7 @@ describe('Run rules in order', () => {
     // LB9
     assertBreaks('a\u0308b', [3]);
     assertBreaks(' \u0308b', [1, 3]);
+    assertBreaks('\v\u0308b', [1, 3]);
     // LB10
     assertBreaks('\u0308b', [2]);
     // LB11
@@ -122,6 +123,10 @@ describe('Run rules in order', () => {
     assertBreaks('%9', [2]);
     assertBreaks('-9', [2]);
     assertBreaks('%%', [1, 2]);
+    assertBreaks('9%', [2]);
+    assertBreaks('9$', [2]);
+    assertBreaks('99', [2]);
+    assertBreaks('9\u2014', [1, 2]);
     // LB26
     assertBreaks('\u1100\u1100', [2]);
     assertBreaks('\u1100a', [1, 2]);
@@ -221,6 +226,29 @@ describe('rule list manipulation', () => {
     r.replaceRule('LB02', newRule);
     assert.equal(r.rules.length, numRules);
     assert.equal(r.rules[lb2], newRule);
+  });
+
+  it('does verbose logging', () => {
+    const old = console.log;
+    const res = [];
+    console.log = (...args) => res.push(args);
+    assertBreaks('a b', [2, 3], { verbose: true });
+    console.log = old;
+  });
+
+  it('handles bad rule lists', () => {
+    const r = new Rules();
+    r.rules = [];
+    assert.deepEqual([...r.breaks('a b')], []);
+  });
+
+  it('uses extra properties', () => {
+    const r = new Rules();
+    r.rules.unshift(state => {
+      state.setProp('foo', true);
+      return PASS;
+    });
+    assert.deepEqual([...r.breaks('a')].map(b => b.props), [{ foo: true }]);
   });
 });
 

@@ -58,6 +58,18 @@ export class BreakerState {
     /** @type {number?} */
     ex7pos: number | null;
     /**
+     * Extra properties, to be copied to Break when created.
+     *
+     * @type {Record<string,any>=}
+     */
+    props: Record<string, any> | undefined;
+    /**
+     * Extra state information, for use by tailoring subclasses.
+     *
+     * @type {Record<string,any>}
+     */
+    extra: Record<string, any>;
+    /**
      * Move to the next state.
      *
      * @param {BreakerChar} step
@@ -78,4 +90,12 @@ export class BreakerState {
      * @returns {number}
      */
     classAfterSpaces(pos: number): number;
+    /**
+     * Set some extra information in the state that will be passed to
+     * the next created Break.
+     *
+     * @param {string} key
+     * @param {any} value
+     */
+    setProp(key: string, value: any): void;
 }
