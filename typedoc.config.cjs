@@ -3,9 +3,7 @@
 /** @type {import('typedoc').TypeDocOptions} */
 module.exports = {
   entryPoints: [
-    './lib/index.js',
-    './lib/break.js',
-    './lib/state.js',
+    'lib/*.js',
   ],
   out: 'docs',
   cleanOutputDir: true,

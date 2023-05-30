@@ -4,14 +4,16 @@
   "description": "Unicode line-breaking algorithm from UAX #14",
   "main": "lib/index.js",
   "type": "module",
-  "types": "types/index.d.ts",
+  "types": "./types/index.d.ts",
   "scripts": {
+    "clean": "rimraf coverage/ docs/ types/ lib/EastAsianWidth.js lib/LineBreak.js",
     "docs": "typedoc",
     "test": "c8 mocha",
     "lint": "eslint . --ext js,cjs",
     "types": "tsc",
     "trie": "node tools/generate_data.js",
-    "build": "npm run trie && npm run lint && npm run types && npm run docs && npm run test"
+    "prebuild": "npm run clean",
+    "build": "npm run trie && npm run lint && npm run types && npm run docs && npm run test && npm pack --dry-run"
   },
   "keywords": [
     "unicode",
@@ -31,6 +33,7 @@
     "c8": "7.13.0",
     "eslint": "8.41.0",
     "mocha": "10.2.0",
+    "rimraf": "5.0.1",
     "typedoc": "0.24.7",
     "typescript": "5.0.4"
   },

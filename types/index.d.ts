@@ -55,16 +55,39 @@ export const MAY_BREAK: unique symbol;
  * This rule asserts that there must be a line break after the current code point.
  */
 export const MUST_BREAK: unique symbol;
-/**
- * @type {BreakRule[]}
- */
-export const rules: BreakRule[];
 export class Rules {
-    constructor(opts?: {});
-    opts: {
-        string: boolean;
-        example7: boolean;
-    };
+    /**
+     * Options for how rules are applied.
+     *
+     * @typedef {object} RulesOptions
+     * @prop {boolean} [string=false] Extract strings from input, rather than just
+     *   returning char offsets.
+     * @prop {boolean} [example7=false] Use the extra rules for numbers from
+     *   Example 7.  Set to `true` for running the conformance tests.
+     * @prop {boolean} [verbose=false] Turn on some verbose logging that is
+     *   useful for debug.
+     */
+    /**
+     *
+     * @param {RulesOptions} opts
+     */
+    constructor(opts?: {
+        /**
+         * Extract strings from input, rather than just
+         * returning char offsets.
+         */
+        string?: boolean | undefined;
+        /**
+         * Use the extra rules for numbers from
+         * Example 7.  Set to `true` for running the conformance tests.
+         */
+        example7?: boolean | undefined;
+        /**
+         * Turn on some verbose logging that is
+         * useful for debug.
+         */
+        verbose?: boolean | undefined;
+    });
     /**
      * Copy of rules, safe to tweak.
      *
@@ -118,3 +141,11 @@ export class Rules {
  */
 export type BreakRule = (state: import('./state.js').BreakerState) => typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 import { Break } from './break.js';
+import { BreakerState } from './state.js';
+import { EastAsianWidth } from './EastAsianWidth.js';
+import { classes as EastAsianWidthClasses } from './EastAsianWidth.js';
+import { LineBreak } from './LineBreak.js';
+import { classes as LineBreakClasses } from './LineBreak.js';
+import { eot } from './state.js';
+import { sot } from './state.js';
+export { Break, BreakerState, EastAsianWidth, EastAsianWidthClasses, LineBreak, LineBreakClasses, eot, sot };

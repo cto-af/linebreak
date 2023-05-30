@@ -11,6 +11,12 @@ export class Break {
      */
     string: string | undefined;
     /**
+     * Extra info from plugin rules.
+     *
+     * @type {Record<string,any>=}
+     */
+    props: Record<string, any> | undefined;
+    /**
      * Offset into input string in JS characters (16bit code units).
      *
      * @type {number}
