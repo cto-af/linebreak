@@ -8,9 +8,8 @@ import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const NOW = new Date();
 
-async function processFile(name, defaultValue) {
+async function processFile(name, defaultValue, errValue, transform) {
   const INPUT = path.join(__dirname, `${name}.txt`);
   const OUTPUT = path.resolve(__dirname, '..', 'lib', `${name}.js`);
 
@@ -27,51 +26,38 @@ async function processFile(name, defaultValue) {
   // # LineBreak-15.0.0.txt
   // # Date: 2022-07-28, 09:20:42 GMT [KW, LI]
 
-  const ver = txt.match(/^#\s*\S+-(\d+\.\d+\.\d+).txt/)[1];
+  const version = txt.match(/^#\s*\S+-(\d+\.\d+\.\d+).txt/)[1];
   const date = txt.match(/^#\s*Date: ([\d,: GMT-]+)/m)[1];
 
-  const trie = new UnicodeTrieBuilder(defaultValue, 'ER');
+  const trie = new UnicodeTrieBuilder(defaultValue, errValue);
 
   const matches
     = txt.matchAll(/^(\p{Hex}{4,6})(?:\.\.(\p{Hex}{4,6}))?;(\S+)/gmu);
   for (const match of matches) {
-    // Cut down the size of the width trie, we only need F, W, and H.
-    if ((name === 'EastAsianWidth') && (['F', 'W', 'H'].indexOf(match[3]) === -1)) {
+    const val = transform(match[3]);
+    if (val == null) {
       continue;
     }
     const start = parseInt(match[1], 16);
     if (match[2]) {
       const end = parseInt(match[2], 16);
-      trie.setRange(start, end, match[3]);
+      trie.setRange(start, end, val);
     } else {
-      trie.set(start, match[3]);
+      trie.set(start, val);
     }
   }
 
-  const buf = trie.toBuffer();
-  await fs.writeFile(OUTPUT, `\
-import { UnicodeTrie } from '@cto.af/unicode-trie';
-
-export const version = '${ver}';
-export const inputFileDate = new Date('${new Date(date).toISOString()}');
-export const generatedDate = new Date('${NOW.toISOString()}');
-export const ${name} = new UnicodeTrie(Buffer.from(
-  '${buf.toString('base64')}',
-  'base64'
-));
-/**
- * @type {Record<string, number>}
- */
-export const classes = Object.fromEntries(
-  ${name}.values.map((v, i) => [v, i])
-);
-export const values = ${name}.values;
-`);
+  await fs.writeFile(OUTPUT, trie.toModule({ version, date, name, quot: "'" }));
   return OUTPUT;
 }
 
-const eaw = await processFile('EastAsianWidth', 'XX');
-const lb = await processFile('LineBreak', 'XX');
+const eaw = await processFile(
+  'EastAsianWidth',
+  'N',
+  'N',
+  x => (['F', 'W', 'H'].includes(x) ? 'Y' : null)
+);
+const lb = await processFile('LineBreak', 'XX', 'ER', x => x);
 
 // Spot checks
 const { LineBreak } = await import(lb);
@@ -88,7 +74,7 @@ for (const [hex, cls] of Object.entries(checks)) {
 
 const { EastAsianWidth } = await import(eaw);
 const eaw_checks = {
-  'FF01': 'F',
+  'FF01': 'Y',
 };
 
 for (const [hex, cls] of Object.entries(eaw_checks)) {

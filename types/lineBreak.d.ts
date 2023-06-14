@@ -5,6 +5,6 @@ export const LineBreak: UnicodeTrie;
 /**
  * @type {Record<string, number>}
  */
-export const classes: Record<string, number>;
+export const names: Record<string, number>;
 export const values: string[];
 import { UnicodeTrie } from '@cto.af/unicode-trie';

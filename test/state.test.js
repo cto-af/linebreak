@@ -1,11 +1,11 @@
 import { BreakerState, eot, resolve } from '../lib/state.js';
 import assert from 'assert/strict';
-import { classes } from '../lib/LineBreak.js';
+import { names } from '../lib/LineBreak.js';
 import util from 'util';
 
 const {
   CM, SA,
-} = classes;
+} = names;
 
 describe('manage parsing state', () => {
   it('pushes the next character', () => {
