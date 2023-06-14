@@ -143,9 +143,8 @@ export type BreakRule = (state: import('./state.js').BreakerState) => typeof PAS
 import { Break } from './break.js';
 import { BreakerState } from './state.js';
 import { EastAsianWidth } from './EastAsianWidth.js';
-import { classes as EastAsianWidthClasses } from './EastAsianWidth.js';
 import { LineBreak } from './LineBreak.js';
-import { classes as LineBreakClasses } from './LineBreak.js';
+import { names as LineBreakClasses } from './LineBreak.js';
 import { eot } from './state.js';
 import { sot } from './state.js';
-export { Break, BreakerState, EastAsianWidth, EastAsianWidthClasses, LineBreak, LineBreakClasses, eot, sot };
+export { Break, BreakerState, EastAsianWidth, LineBreak, LineBreakClasses, eot, sot };
