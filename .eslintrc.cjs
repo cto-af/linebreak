@@ -33,5 +33,11 @@ module.exports = {
         'prefer-arrow-callback': 'off',
       },
     },
+    {
+      files: ['lib/EastAsianWidth.js', 'lib/LineBreak.js'],
+      rules: {
+        'object-curly-spacing': 'off',
+      },
+    },
   ],
 };
