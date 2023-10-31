@@ -91,6 +91,12 @@ export class BreakerState {
      */
     classAfterSpaces(pos: number): number;
     /**
+     * Get the character after next.
+     *
+     * @returns {BreakerChar?}
+     */
+    afterNext(): BreakerChar | null;
+    /**
      * Set some extra information in the state that will be passed to
      * the next created Break.
      *
