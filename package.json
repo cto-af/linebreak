@@ -40,9 +40,6 @@
   "dependencies": {
     "@cto.af/unicode-trie": "1.2.2"
   },
-  "overrides": {
-    "semver": ">=7.5.4"
-  },
   "engines": {
     "node": ">=16"
   }
