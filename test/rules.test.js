@@ -62,11 +62,6 @@ describe('Run rules in order', () => {
     // LB14
     assertBreaks('\u2329a', [2]);
     assertBreaks('\u2329  a', [4]);
-    // LB15
-    assertBreaks('"[', [2]);
-    assertBreaks('" [', [3]);
-    assertBreaks('"  [', [4]);
-    assertBreaks('" ', [2]);
     // LB16
     assertBreaks('\u2046\u2047', [2]);
     assertBreaks('\u2046 \u2047', [3]);

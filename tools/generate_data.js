@@ -31,8 +31,9 @@ async function processFile(name, defaultValue, errValue, transform) {
 
   const trie = new UnicodeTrieBuilder(defaultValue, errValue);
 
-  const matches
-    = txt.matchAll(/^(\p{Hex}{4,6})(?:\.\.(\p{Hex}{4,6}))?;(\S+)/gmu);
+  const matches = txt.matchAll(
+    /^(\p{Hex}{4,6})(?:\.\.(\p{Hex}{4,6}))?\s*;\s*([^ #\t;]+)/gmu
+  );
   for (const match of matches) {
     const val = transform(match[3]);
     if (val == null) {

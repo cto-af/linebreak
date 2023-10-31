@@ -14,7 +14,8 @@ export function LB12(state: import('./state.js').BreakerState): typeof PASS | ty
 export function LB12a(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 export function LB13(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 export function LB14(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
-export function LB15(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
+export function LB15a(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
+export function LB15b(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 export function LB16(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 export function LB17(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 export function LB18(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
@@ -31,6 +32,7 @@ export function LB25(state: import('./state.js').BreakerState): typeof PASS | ty
 export function LB26(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 export function LB27(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 export function LB28(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
+export function LB28a(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 export function LB29(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 export function LB30(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
 export function LB30a(state: import('./state.js').BreakerState): typeof PASS | typeof NO_BREAK | typeof MAY_BREAK | typeof MUST_BREAK;
