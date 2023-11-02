@@ -18,6 +18,11 @@ describe('manage parsing state', () => {
     const str = '123';
     const state = new BreakerState(str);
     assert.deepEqual([...state.codePoints(1)].map(s => s.len), [2, 3]);
+    // Initialized with sot, sot, sot
+    const first = state.afterNext();
+    assert.deepEqual(first.char, '1');
+    state.push(first);
+    assert.deepEqual(state.afterNext().char, '2');
   });
 
   it('resolves Mn and Mc', () => {
@@ -36,6 +41,7 @@ describe('manage parsing state', () => {
     state.RI = 1;
     state.ex7pos = 5;
     state.setProp('foo', 'bar');
-    assert.equal(util.inspect(state), 'sot(-Infinity:"") => XX(-Infinity:"") => eot(-Infinity:"") LB8 spaces RI: 1 ex7: 5 {"foo":"bar"}');
+    state.next.ignored = true;
+    assert.equal(util.inspect(state), 'sot(-Infinity:"") => XX(-Infinity:"") => eot(-Infinity:"")Ig LB8 spaces RI: 1 ex7: 5 {"foo":"bar"}');
   });
 });
