@@ -28,19 +28,20 @@
   "repository": "cto-af/linebreak",
   "license": "MIT",
   "devDependencies": {
-    "@peggyjs/eslint-config": "3.0.6",
-    "@types/node": "20.8.10",
-    "c8": "8.0.1",
-    "eslint": "8.52.0",
-    "mocha": "10.2.0",
+    "@peggyjs/eslint-config": "3.2.4",
+    "@types/node": "20.11.25",
+    "c8": "9.1.0",
+    "eslint": "8.57.0",
+    "mocha": "10.3.0",
     "rimraf": "5.0.5",
-    "typedoc": "0.25.3",
-    "typescript": "5.2.2"
+    "typedoc": "0.25.11",
+    "typescript": "5.4.2"
   },
   "dependencies": {
-    "@cto.af/unicode-trie": "1.2.2"
+    "@cto.af/unicode-trie": "1.2.3"
   },
+  "packageManager": "pnpm@8.15.4",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   }
 }

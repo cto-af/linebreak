@@ -1,8 +1,8 @@
-import { UnicodeTrieBuilder } from '@cto.af/unicode-trie/builder.js';
-import assert from 'assert/strict';
-import { fileURLToPath } from 'url';
-import fs from 'fs/promises';
-import path from 'path';
+import { UnicodeTrieBuilder } from "@cto.af/unicode-trie/builder.js";
+import assert from "assert/strict";
+import { fileURLToPath } from "url";
+import fs from "fs/promises";
+import path from "path";
 
 // https://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt
 
@@ -11,16 +11,16 @@ const __dirname = path.dirname(__filename);
 
 async function processFile(name, defaultValue, errValue, transform) {
   const INPUT = path.join(__dirname, `${name}.txt`);
-  const OUTPUT = path.resolve(__dirname, '..', 'lib', `${name}.js`);
+  const OUTPUT = path.resolve(__dirname, "..", "lib", `${name}.js`);
 
   // Cache data in local file.  Requires Node v18+.
   let txt = null;
   try {
-    txt = await fs.readFile(INPUT, 'utf8');
+    txt = await fs.readFile(INPUT, "utf8");
   } catch (e) {
     const res = await fetch(`https://www.unicode.org/Public/UCD/latest/ucd/${name}.txt`);
     txt = await res.text();
-    fs.writeFile(INPUT, txt, 'utf8');
+    fs.writeFile(INPUT, txt, "utf8");
   }
 
   // # LineBreak-15.0.0.txt
@@ -48,25 +48,25 @@ async function processFile(name, defaultValue, errValue, transform) {
     }
   }
 
-  await fs.writeFile(OUTPUT, trie.toModule({ version, date, name, quot: "'" }));
+  await fs.writeFile(OUTPUT, trie.toModule({ version, date, name, quot: '"' }));
   return OUTPUT;
 }
 
 const eaw = await processFile(
-  'EastAsianWidth',
-  'N',
-  'N',
-  x => (['F', 'W', 'H'].includes(x) ? 'Y' : null)
+  "EastAsianWidth",
+  "N",
+  "N",
+  x => (["F", "W", "H"].includes(x) ? "Y" : null)
 );
-const lb = await processFile('LineBreak', 'XX', 'ER', x => x);
+const lb = await processFile("LineBreak", "XX", "ER", x => x);
 
 // Spot checks
 const { LineBreak } = await import(lb);
 const checks = {
-  '0': 'CM',
-  '1F1EA': 'RI',
-  '1F532': 'AL',
-  'E0100': 'CM',
+  "0": "CM",
+  "1F1EA": "RI",
+  "1F532": "AL",
+  "E0100": "CM",
 };
 
 for (const [hex, cls] of Object.entries(checks)) {
@@ -75,7 +75,7 @@ for (const [hex, cls] of Object.entries(checks)) {
 
 const { EastAsianWidth } = await import(eaw);
 const eaw_checks = {
-  'FF01': 'Y',
+  "FF01": "Y",
 };
 
 for (const [hex, cls] of Object.entries(eaw_checks)) {

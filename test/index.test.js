@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
-import { Rules } from '../lib/index.js';
-import assert from 'assert';
-import fs from 'fs';
+import { Rules } from "../lib/index.js";
+import assert from "assert";
+import fs from "fs";
 
 // We have to include the tailoring from Example 7:
 //
@@ -11,15 +11,15 @@ import fs from 'fs';
 // matches that specification, a test file has been made available in
 // [Tests14]."
 
-describe('unicode line break tests', function() {
-  const data = fs.readFileSync(new URL('LineBreakTest.txt', import.meta.url), 'utf8');
-  const lines = data.split('\n');
+describe("unicode line break tests", function() {
+  const data = fs.readFileSync(new URL("LineBreakTest.txt", import.meta.url), "utf8");
+  const lines = data.split("\n");
 
   return lines.forEach((line, i) => {
     const rowNumber = i + 1;
     if (!line || /^#/.test(line)) { return; }
 
-    const [cols, comment] = line.split('#');
+    const [cols, comment] = line.split("#");
     const codePoints = cols.split(/\s*[×÷]\s*/).slice(1, -1).map(c => parseInt(c, 16));
     const str = String.fromCodePoint(...codePoints);
 
@@ -32,7 +32,7 @@ describe('unicode line break tests', function() {
 
     const expected = cols.split(/\s*÷\s*/).slice(0, -1).map(c => {
       let codes = c.split(/\s*×\s*/);
-      if (codes[0] === '') { codes.shift(); }
+      if (codes[0] === "") { codes.shift(); }
       codes = codes.map(c => parseInt(c, 16));
       return String.fromCodePoint(...codes);
     });
@@ -47,15 +47,15 @@ describe('unicode line break tests', function() {
   });
 });
 
-describe('options', () => {
-  it('generates strings', () => {
+describe("options", () => {
+  it("generates strings", () => {
     const breaker = new Rules({
       string: true,
     });
-    const res = [...breaker.breaks('foo bar')].map(b => b.string);
+    const res = [...breaker.breaks("foo bar")].map(b => b.string);
     assert.deepStrictEqual(
       res,
-      ['foo ', 'bar']
+      ["foo ", "bar"]
     );
   });
 });

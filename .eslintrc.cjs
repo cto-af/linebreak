@@ -1,42 +1,41 @@
-'use strict';
+"use strict";
 
 module.exports = {
   root: true,
-  extends: ['@peggyjs'],
+  extends: ["@peggyjs"],
   ignorePatterns: [
-    'docs/',
-    'node_modules/',
+    "docs/",
+    "node_modules/",
   ],
   overrides: [
     {
-      files: ['*.js', '*.cjs'],
+      files: ["*.js", "*.cjs"],
       rules: {
-        'no-eq-null': 'off',
-        'eqeqeq': ['error', 'always', { 'null': 'ignore' }],
-        'no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
-        'quotes': ['error', 'single', { avoidEscape: true }],
+        "no-eq-null": "off",
+        "eqeqeq": ["error", "always", { "null": "ignore" }],
+        "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
       },
     },
     {
-      files: ['*.js'],
+      files: ["*.js"],
       parserOptions: {
-        sourceType: 'module',
+        sourceType: "module",
         ecmaVersion: 2022,
       },
     },
     {
-      files: ['test/*.js'],
+      files: ["test/*.js"],
       env: {
         mocha: true,
       },
       rules: {
-        'prefer-arrow-callback': 'off',
+        "prefer-arrow-callback": "off",
       },
     },
     {
-      files: ['lib/EastAsianWidth.js', 'lib/LineBreak.js'],
+      files: ["lib/EastAsianWidth.js", "lib/LineBreak.js"],
       rules: {
-        'object-curly-spacing': 'off',
+        "@stylistic/object-curly-spacing": "off",
       },
     },
   ],

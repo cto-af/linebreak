@@ -7,4 +7,4 @@ export const LineBreak: UnicodeTrie;
  */
 export const names: Record<string, number>;
 export const values: string[];
-import { UnicodeTrie } from '@cto.af/unicode-trie';
+import { UnicodeTrie } from "@cto.af/unicode-trie";
