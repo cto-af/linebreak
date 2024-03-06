@@ -146,11 +146,11 @@ export type RulesOptions = {
      */
     verbose?: boolean | undefined;
 };
-import { Break } from './break.js';
-import { BreakerState } from './state.js';
-import { EastAsianWidth } from './EastAsianWidth.js';
-import { LineBreak } from './LineBreak.js';
-import { names as LineBreakClasses } from './LineBreak.js';
-import { eot } from './state.js';
-import { sot } from './state.js';
+import { Break } from "./break.js";
+import { BreakerState } from "./state.js";
+import { EastAsianWidth } from "./EastAsianWidth.js";
+import { LineBreak } from "./LineBreak.js";
+import { names as LineBreakClasses } from "./LineBreak.js";
+import { eot } from "./state.js";
+import { sot } from "./state.js";
 export { Break, BreakerState, EastAsianWidth, LineBreak, LineBreakClasses, eot, sot };

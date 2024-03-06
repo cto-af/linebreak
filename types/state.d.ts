@@ -37,6 +37,11 @@ export class BreakerChar {
      * The length of the whole string up to and including char, in JS chars.
      */
     len: number;
+    /**
+     * If true, this is an LB9 CM or ZWJ that is treated as coalesced into
+     * the previous code point.
+     */
+    ignored: boolean;
 }
 /**
  * @private
