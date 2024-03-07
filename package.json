@@ -38,7 +38,7 @@
     "typescript": "5.4.2"
   },
   "dependencies": {
-    "@cto.af/unicode-trie": "1.2.3"
+    "@cto.af/unicode-trie": "2.0.0"
   },
   "packageManager": "pnpm@8.15.4",
   "engines": {
