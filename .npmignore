@@ -1,14 +1,14 @@
 .c8rc
 .editorconfig
-.eslintrc.cjs
 .github/
 .mocharc.cjs
 .vscode/
 coverage/
+docs/
+eslint.config.js
 examples/
+t.js
 test/
 tools/
 tsconfig.json
-docs/
 typedoc.config.cjs
-t.js
