@@ -1,6 +1,7 @@
 import cjs from "@peggyjs/eslint-config/flat/cjs.js";
 import mocha from "@peggyjs/eslint-config/flat/mocha.js";
 import mod from "@peggyjs/eslint-config/flat/module.js";
+import modern from "@peggyjs/eslint-config/flat/modern.js";
 
 export default [
   {
@@ -12,20 +13,7 @@ export default [
     ],
   },
   mod,
-  {
-    languageOptions: {
-      ecmaVersion: 2022,
-    },
-    rules: {
-      "no-unused-vars": ["error", {
-        argsIgnorePattern: "^_",
-        caughtErrorsIgnorePattern: "^(_|ignore)",
-        destructuredArrayIgnorePattern: "^_",
-        varsIgnorePattern: "^_[^_]",
-        reportUsedIgnorePattern: true,
-      }],
-    },
-  },
+  modern,
   cjs,
   mocha,
   {
