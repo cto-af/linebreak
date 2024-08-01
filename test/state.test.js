@@ -14,6 +14,7 @@ describe("manage parsing state", () => {
     assert.equal(state.cur.len, 0);
     assert.deepEqual([...state.codePoints(0)].map(c => c.len), [1, 2, 3]);
   });
+
   it("iterates from the middle", () => {
     const str = "123";
     const state = new BreakerState(str);
