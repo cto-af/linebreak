@@ -25,7 +25,10 @@
     "tailorable"
   ],
   "author": "Joe Hildebrand <joe-github@cursive.net>",
-  "repository": "cto-af/linebreak",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cto-af/linebreak.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "@peggyjs/eslint-config": "4.0.3",
