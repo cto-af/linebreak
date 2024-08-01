@@ -13,8 +13,8 @@ importers:
         version: 2.0.1
     devDependencies:
       '@peggyjs/eslint-config':
-        specifier: 4.0.3
-        version: 4.0.3(eslint@9.8.0)(typescript@5.5.4)
+        specifier: 4.0.4
+        version: 4.0.4(eslint@9.8.0)(typescript@5.5.4)
       '@types/node':
         specifier: 22.0.2
         version: 22.0.2
@@ -117,8 +117,8 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@peggyjs/eslint-config@4.0.3':
-    resolution: {integrity: sha512-6cjxn4+9c2o5CzWB/rAvGSB8nFxWDQeyqIcjDGoAq6G+c2cC60+tvtoUVwXJvlt8IATl23gAR+x8ZjtCZ9jZJQ==}
+  '@peggyjs/eslint-config@4.0.4':
+    resolution: {integrity: sha512-RSPKxha440+85R6MXgV8aPK0jtl1N7J6XM3kPcP3lICnUrhp6L5c3+rTM7oi/5vvFpp91h8KtlEeLA3UZGcyzg==}
     engines: {node: '>=18'}
 
   '@pkgjs/parseargs@0.11.0':
@@ -1048,7 +1048,7 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
 
-  '@peggyjs/eslint-config@4.0.3(eslint@9.8.0)(typescript@5.5.4)':
+  '@peggyjs/eslint-config@4.0.4(eslint@9.8.0)(typescript@5.5.4)':
     dependencies:
       '@stylistic/eslint-plugin': 2.6.0(eslint@9.8.0)(typescript@5.5.4)
       globals: 15.8.0
@@ -1143,7 +1143,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.0.0
       '@typescript-eslint/visitor-keys': 8.0.0
-      debug: 4.3.4
+      debug: 4.3.6(supports-color@8.1.1)
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.5
