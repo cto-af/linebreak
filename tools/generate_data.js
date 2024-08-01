@@ -14,10 +14,11 @@ async function processFile(name, defaultValue, errValue, transform) {
   const OUTPUT = path.resolve(__dirname, "..", "lib", `${name}.js`);
 
   // Cache data in local file.  Requires Node v18+.
+  // eslint-disable-next-line no-useless-assignment
   let txt = null;
   try {
     txt = await fs.readFile(INPUT, "utf8");
-  } catch (e) {
+  } catch (ignored) {
     const res = await fetch(`https://www.unicode.org/Public/UCD/latest/ucd/${name}.txt`);
     txt = await res.text();
     fs.writeFile(INPUT, txt, "utf8");
@@ -36,7 +37,7 @@ async function processFile(name, defaultValue, errValue, transform) {
   );
   for (const match of matches) {
     const val = transform(match[3]);
-    if (val == null) {
+    if (val === null) {
       continue;
     }
     const start = parseInt(match[1], 16);

@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable mocha/no-setup-in-describe */
 import { Rules } from "../lib/index.js";
 import assert from "assert";
 import fs from "fs";
@@ -11,11 +11,11 @@ import fs from "fs";
 // matches that specification, a test file has been made available in
 // [Tests14]."
 
-describe("unicode line break tests", function() {
+describe("unicode line break tests", () => {
   const data = fs.readFileSync(new URL("LineBreakTest.txt", import.meta.url), "utf8");
   const lines = data.split("\n");
 
-  return lines.forEach((line, i) => {
+  lines.forEach((line, i) => {
     const rowNumber = i + 1;
     if (!line || /^#/.test(line)) { return; }
 
@@ -45,9 +45,7 @@ describe("unicode line break tests", function() {
       );
     });
   });
-});
 
-describe("options", () => {
   it("generates strings", () => {
     const breaker = new Rules({
       string: true,
