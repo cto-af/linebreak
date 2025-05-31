@@ -44,7 +44,7 @@ test("unicode line break tests", async t => {
     });
 
     // eslint-disable-next-line no-loop-func
-    t.test(cols, () => {
+    await t.test(cols, () => {
       total++;
       assert.deepStrictEqual(
         breaks,
