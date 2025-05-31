@@ -1,4 +1,5 @@
 import { BreakerState, eot, resolve } from "../lib/state.js";
+import { describe, it } from "node:test";
 import assert from "assert/strict";
 import { names } from "../lib/LineBreak.js";
 import util from "util";
@@ -26,6 +27,17 @@ describe("manage parsing state", () => {
     assert.deepEqual(state.afterNext().char, "2");
   });
 
+  it("itereates backwards", () => {
+    const str = "12\u{1F4AA}34";
+    const state = new BreakerState(str);
+    for (const cp of state.codePoints(0)) {
+      state.push(cp);
+    }
+    state.pushEnd();
+    const p = [...state.codePoints(state.cur.len, false)].map(cp => cp.char);
+    assert.deepEqual(p, ["4", "3", "💪", "2", "1"]);
+  });
+
   it("resolves Mn and Mc", () => {
     assert.equal(resolve(SA, "\u0E34"), CM); // Mn
     assert.equal(resolve(SA, "\u102B"), CM); // Mc
@@ -40,9 +52,8 @@ describe("manage parsing state", () => {
     state.LB8 = true;
     state.spaces = true;
     state.RI = 1;
-    state.ex7pos = 5;
     state.setProp("foo", "bar");
     state.next.ignored = true;
-    assert.equal(util.inspect(state), 'sot(-Infinity:"") => XX(-Infinity:"") => eot(-Infinity:"")Ig LB8 spaces RI: 1 ex7: 5 {"foo":"bar"}');
+    assert.equal(util.inspect(state), 'sot(-Infinity:"") => XX(-Infinity:"") => eot(-Infinity:"")Ig LB8 spaces RI: 1 {"foo":"bar"}');
   });
 });

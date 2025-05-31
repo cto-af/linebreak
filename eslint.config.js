@@ -1,7 +1,5 @@
-import cjs from "@peggyjs/eslint-config/flat/cjs.js";
-import mocha from "@peggyjs/eslint-config/flat/mocha.js";
-import mod from "@peggyjs/eslint-config/flat/module.js";
-import modern from "@peggyjs/eslint-config/flat/modern.js";
+import mod from "@peggyjs/eslint-config/module.js";
+import modern from "@peggyjs/eslint-config/modern.js";
 
 export default [
   {
@@ -12,10 +10,8 @@ export default [
       "**/*.d.ts",
     ],
   },
-  mod,
-  modern,
-  cjs,
-  mocha,
+  ...mod,
+  ...modern,
   {
     files: [
       "lib/EastAsianWidth.js",

@@ -1,65 +1,30 @@
-import { UnicodeTrieBuilder } from "@cto.af/unicode-trie/builder.js";
 import assert from "assert/strict";
 import { fileURLToPath } from "url";
-import fs from "fs/promises";
 import path from "path";
-
-// https://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt
+import { writeFile } from "@cto.af/unicode-trie/file";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const lib = path.resolve(__dirname, "..", "lib");
 
-async function processFile(name, defaultValue, errValue, transform) {
-  const INPUT = path.join(__dirname, `${name}.txt`);
-  const OUTPUT = path.resolve(__dirname, "..", "lib", `${name}.js`);
+const eaw = await writeFile("EastAsianWidth.txt", {
+  dir: lib,
+  cacheDir: __dirname,
+  initialValue: "N",
+  errorValue: "N",
+  transform(x) {
+    return ["F", "W", "H"].includes(x) ? "Y" : null;
+  },
+  verbose: true,
+});
 
-  // Cache data in local file.  Requires Node v18+.
-  // eslint-disable-next-line no-useless-assignment
-  let txt = null;
-  try {
-    txt = await fs.readFile(INPUT, "utf8");
-  } catch (ignored) {
-    const res = await fetch(`https://www.unicode.org/Public/UCD/latest/ucd/${name}.txt`);
-    txt = await res.text();
-    fs.writeFile(INPUT, txt, "utf8");
-  }
-
-  // # LineBreak-15.0.0.txt
-  // # Date: 2022-07-28, 09:20:42 GMT [KW, LI]
-
-  const version = txt.match(/^#\s*\S+-(\d+\.\d+\.\d+).txt/)[1];
-  const date = txt.match(/^#\s*Date: ([\d,: GMT-]+)/m)[1];
-
-  const trie = new UnicodeTrieBuilder(defaultValue, errValue);
-
-  const matches = txt.matchAll(
-    /^(\p{Hex}{4,6})(?:\.\.(\p{Hex}{4,6}))?\s*;\s*([^ #\t;]+)/gmu
-  );
-  for (const match of matches) {
-    const val = transform(match[3]);
-    if (val === null) {
-      continue;
-    }
-    const start = parseInt(match[1], 16);
-    if (match[2]) {
-      const end = parseInt(match[2], 16);
-      trie.setRange(start, end, val);
-    } else {
-      trie.set(start, val);
-    }
-  }
-
-  await fs.writeFile(OUTPUT, trie.toModule({ version, date, name, quot: '"' }));
-  return OUTPUT;
-}
-
-const eaw = await processFile(
-  "EastAsianWidth",
-  "N",
-  "N",
-  x => (["F", "W", "H"].includes(x) ? "Y" : null)
-);
-const lb = await processFile("LineBreak", "XX", "ER", x => x);
+const lb = await writeFile("LineBreak.txt", {
+  dir: lib,
+  cacheDir: __dirname,
+  initialValue: "XX",
+  errorValue: "ER",
+  verbose: true,
+});
 
 // Spot checks
 const { LineBreak } = await import(lb);

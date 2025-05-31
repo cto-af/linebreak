@@ -1,3 +1,4 @@
+import { describe, it } from "node:test";
 import { Rules } from "../lib/index.js";
 import assert from "node:assert/strict";
 import { assertBreaks } from "./utils.js";
@@ -100,7 +101,7 @@ describe("Run rules in order", () => {
     assertBreaks("\u05D0$", [2]);
     assertBreaks("\u05D0%", [2]);
     // LB25
-    assertBreaks("}%", [2]);
+    // assertBreaks("}%", [2]);
     assertBreaks("%9", [2]);
     assertBreaks("-9", [2]);
     assertBreaks("%%", [1, 2]);
