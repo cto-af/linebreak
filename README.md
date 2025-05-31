@@ -6,7 +6,7 @@ originally started as a refresh of the
 [linebreak](https://github.com/foliojs/linebreak) package, and still shares
 a small amount of test driver code with that project.  The rest has been
 rewritten to support a fully rules-based approach that implements UAX #14 from
-Unicode version 15.0.  From that document:
+Unicode version 16.0.0  From that document:
 
 > Line breaking, also known as word wrapping, is the process of breaking a
 > section of text into lines such that it will fit in the available width of a
@@ -73,7 +73,7 @@ Full API documentation is [available](http://cto-af.github.io/linebreak/).
 This package intends to be fully conformant with UAX #14.  It currently passes
 **ALL** of the
 [tests](https://www.unicode.org/Public/UCD/latest/ucd/auxiliary/LineBreakTest.txt)
-published by Unicode, when the `example7` option is enabled in the costructor.
+published by Unicode, when the `example7` option is enabled in the constructor.
 
 Other tailoring is possible by adding and removing rules.
 
