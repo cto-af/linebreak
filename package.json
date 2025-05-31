@@ -6,7 +6,7 @@
   "type": "module",
   "types": "./types/index.d.ts",
   "scripts": {
-    "clean": "rimraf coverage/ docs/ types/ lib/EastAsianWidth.js lib/LineBreak.js",
+    "clean": "rimraf coverage/ docs/ types/",
     "docs": "typedoc",
     "test": "c8 node --test test/*.test.js",
     "lint": "eslint .",

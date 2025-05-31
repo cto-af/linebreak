@@ -83,4 +83,4 @@ MIT
 
 ---
 [![Tests](https://github.com/cto-af/linebreak/actions/workflows/node.js.yml/badge.svg)](https://github.com/cto-af/linebreak/actions/workflows/node.js.yml)
-[![codecov](https://codecov.io/gh/cto-af/linebreak/branch/main/graph/badge.svg?token=OyXDzCGY0Q)](https://codecov.io/gh/cto-af/linebreak)
+[![codecov](https://codecov.io/gh/cto-af/linebreak/graph/badge.svg?token=OyXDzCGY0Q)](https://codecov.io/gh/cto-af/linebreak)
