@@ -6,6 +6,7 @@ export default [
     ignores: [
       "coverage/**",
       "docs/**",
+      "dist/**",
       "node_modules/**",
       "**/*.d.ts",
     ],

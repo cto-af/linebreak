@@ -4,6 +4,10 @@
   "description": "Unicode line-breaking algorithm from UAX #14",
   "main": "lib/index.js",
   "type": "module",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "import": "./lib/index.js"
+  },
   "types": "./types/index.d.ts",
   "scripts": {
     "clean": "rimraf coverage/ docs/ types/",
@@ -13,7 +17,8 @@
     "types": "tsc",
     "trie": "node tools/generate_data.js",
     "prebuild": "npm run clean",
-    "build": "npm run trie && npm run lint && npm run types && npm run docs && npm run test && npm pack --dry-run"
+    "compile": "rollup -c",
+    "build": "npm run trie && npm run lint && npm run types && npm run docs && npm run test && npm run compile && npm pack --dry-run"
   },
   "keywords": [
     "unicode",
@@ -34,6 +39,10 @@
     "@cto.af/unicode-trie-runtime": "3.2.3"
   },
   "devDependencies": {
+    "rollup": "^4.43.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@babel/preset-env": "^7.27.2",
+    "@rollup/plugin-babel": "^6.0.4",
     "@cto.af/unicode-trie": "3.2.3",
     "@peggyjs/eslint-config": "6.0.0",
     "@types/node": "22.15.29",
