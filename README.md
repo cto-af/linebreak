@@ -57,13 +57,6 @@ the specification text.  Comments have been left at these points in the
 source.  If you are going to replace or remove an existing rule, please make
 sure to account for those interactions.
 
-In order for the conformance tests to pass, you can use the expanded number
-definition from UAX #14, [Example 7](https://www.unicode.org/reports/tr14/#Example7):
-
-```js
-const r = new Rules({example7: true});
-```
-
 ## API Documentation
 
 Full API documentation is [available](http://cto-af.github.io/linebreak/).
@@ -72,8 +65,8 @@ Full API documentation is [available](http://cto-af.github.io/linebreak/).
 
 This package intends to be fully conformant with UAX #14.  It currently passes
 **ALL** of the
-[tests](https://www.unicode.org/Public/UCD/latest/ucd/auxiliary/LineBreakTest.txt)
-published by Unicode, when the `example7` option is enabled in the constructor.
+[tests](https://www.unicode.org/Public/16.0.0/ucd/auxiliary/LineBreakTest.txt)
+published by Unicode.
 
 Other tailoring is possible by adding and removing rules.
 

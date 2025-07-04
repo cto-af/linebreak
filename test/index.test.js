@@ -3,14 +3,6 @@ import { Rules } from "../lib/index.js";
 import assert from "assert";
 import fs from "fs/promises";
 
-// We have to include the tailoring from Example 7:
-//
-// "For those who do implement the default breaks as specified in this annex,
-// plus the tailoring of numbers described in Example 7 of Section 8.2,
-// Examples of Customization, and wish to check that that their implementation
-// matches that specification, a test file has been made available in
-// [Tests14]."
-
 let count = 0;
 let total = 0;
 
