@@ -36,16 +36,11 @@ few of the rules have interactions with one another due to idiosyncrasies of
 the specification text.  Comments have been left at these points in the
 source.  If you are going to replace or remove an existing rule, please make
 sure to account for those interactions.</p>
-<p>In order for the conformance tests to pass, you can use the expanded number
-definition from UAX #14, <a href="https://www.unicode.org/reports/tr14/#Example7">Example 7</a>:</p>
-<pre><code class="js"><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">r</span><span class="hl-1"> = </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-0">Rules</span><span class="hl-1">({</span><span class="hl-4">example7:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1">});</span>
-</code><button type="button">Copy</button></pre>
-
 <h2 id="api-documentation" class="tsd-anchor-link">API Documentation<a href="#api-documentation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Full API documentation is <a href="http://cto-af.github.io/linebreak/">available</a>.</p>
 <h2 id="conformance-to-uax-14" class="tsd-anchor-link">Conformance to UAX #14<a href="#conformance-to-uax-14" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>This package intends to be fully conformant with UAX #14.  It currently passes
 <strong>ALL</strong> of the
-<a href="https://www.unicode.org/Public/UCD/latest/ucd/auxiliary/LineBreakTest.txt">tests</a>
-published by Unicode, when the <code>example7</code> option is enabled in the constructor.</p>
+<a href="https://www.unicode.org/Public/16.0.0/ucd/auxiliary/LineBreakTest.txt">tests</a>
+published by Unicode.</p>
 <p>Other tailoring is possible by adding and removing rules.</p>
 <h2 id="license" class="tsd-anchor-link">License<a href="#license" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>MIT</p>
 <hr>
