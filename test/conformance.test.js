@@ -4,8 +4,6 @@ import { assertBreaks } from "./utils.js";
 describe("conformance tests use example 7", () => {
   const opts = {
     string: true,
-    //
-    // example7: true,
   };
 
   it("has a new LB13", () => {
