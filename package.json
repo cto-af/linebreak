@@ -1,6 +1,6 @@
 {
   "name": "@cto.af/linebreak",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Unicode line-breaking algorithm from UAX #14",
   "main": "lib/index.js",
   "type": "module",
