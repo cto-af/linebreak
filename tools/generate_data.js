@@ -30,6 +30,8 @@ const lb = await writeFile("LineBreak.txt", {
 const { LineBreak } = await import(lb);
 const checks = {
   "0": "CM",
+  "034F": "CM",
+  "10EAD": "HH",
   "1F1EA": "RI",
   "1F532": "AL",
   "E0100": "CM",

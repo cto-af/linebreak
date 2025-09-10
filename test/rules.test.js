@@ -72,8 +72,8 @@ describe("Run rules in order", () => {
     assertBreaks("a\t", [2]);
     assertBreaks("\xb4b", [2]);
     // LB21a
-    assertBreaks("\uFB1D-a", [3]);
-    assertBreaks("\uFB1D\ta", [3]);
+    assertBreaks("\uFB1D-a", [3]); // HL HY AL
+    assertBreaks("\uFB1D\u058Aa", [3]); // HL HH AL
     // LB21b
     assertBreaks("/\u05D0", [2]);
     // LB22

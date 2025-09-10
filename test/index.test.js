@@ -76,7 +76,7 @@ test("extra inputs", () => {
   }
 });
 
-test.only("Deprecate ex7", () => {
+test("Deprecate ex7", () => {
   assert.throws(() => new Rules({
     example7: true,
   }));

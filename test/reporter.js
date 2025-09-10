@@ -2,7 +2,7 @@ import { Transform } from "node:stream";
 
 const customReporter = new Transform({
   writableObjectMode: true,
-  transform(event, encoding, callback) {
+  transform(event, _encoding, callback) {
     if (event.type === "test:stderr") {
       callback(null, event.data.message);
     } else {
