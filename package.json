@@ -5,6 +5,10 @@
   "main": "lib/index.js",
   "type": "module",
   "types": "./types/index.d.ts",
+  "files": [
+    "lib/",
+    "types/"
+  ],
   "scripts": {
     "clean": "rimraf coverage/ docs/ types/",
     "docs": "typedoc",
@@ -31,10 +35,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@cto.af/unicode-trie-runtime": "3.2.8"
+    "@cto.af/unicode-trie-runtime": "3.2.9"
   },
   "devDependencies": {
-    "@cto.af/unicode-trie": "3.2.8",
+    "@cto.af/unicode-trie": "3.2.9",
     "@peggyjs/eslint-config": "6.0.10",
     "@types/node": "25.3.3",
     "eslint": "10.0.2",
