@@ -47,13 +47,16 @@ describe("manage parsing state", () => {
     const state = new BreakerState("123");
     state.next.cls = eot;
     state.cur.cls = null;
-    assert.equal(util.inspect(state), 'sot(-Infinity:"") => null(-Infinity:"") => eot(-Infinity:"")');
+    state.RIinterrupt = true;
+    assert.equal(util.inspect(state), 'sot(-Infinity:"") => null(-Infinity:"") => eot(-Infinity:"") RIinterrupt');
+    state.RIinterrupt = false;
     state.cur.cls = 0;
     state.LB8 = true;
     state.spaces = true;
     state.RI = 1;
     state.setProp("foo", "bar");
     state.next.ignored = true;
+
     assert.equal(util.inspect(state), 'sot(-Infinity:"") => XX(-Infinity:"") => eot(-Infinity:"")Ig LB8 spaces RI: 1 {"foo":"bar"}');
   });
 });
